@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AI Chatbot</title>
+    <style>
+      /* Add some styling to the chatbot interface */
+      input {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+      }
+      button {
+        width: 100%;
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <!-- Set up a basic GUI with an input field and a button -->
+      <input type="text" id="inputField">
+      <button id="submitButton">Submit</button>
+    </div>
+    <script>
+      // Get references to the input field and submit button
+      const inputField = document.getElementById('inputField');
+      const submitButton = document.getElementById('submitButton');
+
+      // Set up a function to handle the user's input
+      function handleInput() {
+        // Get the user's input
+        const input = inputField.value;
+
+        // Use a switch statement to determine the appropriate response
+        switch (input) {
+          case 'hello':
+            alert('Hello there!');
+            break;
+          case 'how are you':
+            alert('I am just a computer program, so I don\'t have feelings.');
+            break;
+          case 'what is your name':
+            alert('My name is Assistant.');
+            break;
+          case 'what can you do':
+            alert('I can perform a wide range of tasks, including answering questions, providing information, and helping you complete tasks.');
+            break;
+          default:
+            // If the input is not recognized, search the internet for an answer
+            searchInternet(input);
+            break;
+        }
+      }
+
+      // Set up a function to search the internet for an answer
+      function searchInternet(query) {
+        // Use the Fetch API to send a GET request to a search engine
+        fetch(`https://www.google.com/search?q=${encodeURIComponent(query)}`)
+          .then(response => {
+            // If the request is successful, display a message with a link to the search results
+            alert(`Here is what I found on the internet for "${query}": ${response.url}`);
+          })
+          .catch(error => {
+            // If the request fails, display an error message
+            alert(`I'm sorry, there was an error searching the internet: ${error}`);
+          });
+      }
+
+            // Add an event listener to the submit button to handle the user's input when clicked
+      submitButton.addEventListener('click', handleInput);
+    </script>
+  </body>
+</html>
+
